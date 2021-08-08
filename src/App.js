@@ -12,7 +12,7 @@ import {Text, View, StatusBar} from 'react-native';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
 import LoginScreen from './screens/LoginScreen';
-
+import SignupScreen from './screens/SignupScreen';
 
 
 
@@ -30,7 +30,7 @@ const App = () => {
       <PaperProvider theme={theme}>
         <StatusBar barStyle="dark-content" />
         <View style={{flex: 1}}>
-          <LoginScreen />
+          <SignupScreen />
         </View>
       </PaperProvider>
     </>
