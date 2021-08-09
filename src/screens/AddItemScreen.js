@@ -17,8 +17,8 @@ const AddItemScreen = () => {
       showsVerticalScrollIndicator={false}>
       <Text
         style={{
-          marginVertical: 50,
-          fontSize: 24,
+          marginVertical: 30,
+          fontSize: 32,
           fontWeight: 'bold',
           color: 'skyblue',
           textAlign: 'center',
@@ -103,7 +103,7 @@ const AddItemScreen = () => {
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'center',
-            marginVertical: 30,
+            marginVertical: 20,
           }}>
           <Entypo name="camera" size={15} color="#000000" />
           <Text
@@ -121,6 +121,8 @@ const AddItemScreen = () => {
             borderRadius: 10,
             height: 40,
             width: '100%',
+            marginTop:20,
+            marginBottom:30,
             alignItems: 'center',
             justifyContent: 'center',
           }}>

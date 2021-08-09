@@ -3,11 +3,11 @@ import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 
 import {TextInput} from 'react-native-paper';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
-    <ScrollView style={{backgroundColor: '#ffffff'}} showsVerticalScrollIndicator={false}>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{alignItems: 'center', backgroundColor: 'skyblue'}}>
         <Image
           source={require('../assets/images/logo_image_large.png')}
@@ -26,6 +26,7 @@ const LoginScreen = () => {
           mode="flat"
           placeholder="write email here.."
           value={email}
+          keyboardType='email-address'
           numberOfLines={1}
           style={{
             backgroundColor: 'transparent',
@@ -70,7 +71,7 @@ const LoginScreen = () => {
           }}>
           <Text style={{margin: 5, fontSize: 16, fontWeight:'bold'}}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
           <Text style={{marginTop: 20, marginBottom: 30, fontSize:18, fontWeight:'500'}}>Don't have an account? Signup</Text>
         </TouchableOpacity>
       </View>
