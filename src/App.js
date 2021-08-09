@@ -120,11 +120,10 @@ const Navigation = () => {
   // const User = 'fgb';
   return (
     <NavigationContainer>
-      {/* <TabNavigator /> */}
+      <TabNavigator />
       {/* <AuthNavigator /> */}
       {/* This is condition used for check user avaialble or not - If user is available then show TabNavigator or If User is not available then show AuthNavigator. */}
       {/* {User ? <TabNavigator /> : <AuthNavigator />} */}
-      <AuthNavigator />
     </NavigationContainer>
   );
 };
