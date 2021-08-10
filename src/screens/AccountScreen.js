@@ -1,12 +1,13 @@
 import React from 'react';
 import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 
+import auth from '@react-native-firebase/auth';
+
 const AccountScreen = () => {
   return (
     <View style={{flex: 1}}>
       <View style={{paddingHorizontal: 40, paddingVertical:20, alignItems: 'center'}}>
-        <Text style={{fontSize: 24, marginVertical: 5}}>shahdkjhs@123.com</Text>
-        <Text style={{fontSize: 24, marginVertical: 5}}>12324131</Text>
+        <Text style={{fontSize: 36, marginVertical: 5}}>{auth().currentUser.email}</Text>
         <TouchableOpacity
           style={{
             backgroundColor: 'skyblue',
@@ -16,7 +17,8 @@ const AccountScreen = () => {
             alignItems: 'center',
             justifyContent: 'center',
             marginVertical: 15,
-          }}>
+          }}
+          onPress={()=>auth().signOut()}>
           <Text style={{margin: 5, fontSize: 16, fontWeight: 'bold'}}>
             LOGOUT
           </Text>

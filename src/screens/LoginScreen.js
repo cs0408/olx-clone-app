@@ -1,11 +1,33 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, Alert} from 'react-native';
 
 import {TextInput} from 'react-native-paper';
+
+import auth from '@react-native-firebase/auth';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // function used for signup user
+  const userLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Please fill all the fields');
+      return;
+    }
+    // access "createUserWithEmailAndPassword" function from "auth" and pass first argument is 'email' and second argument is 'password'.
+    try {
+      const result = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      Alert.alert('Login Successfuly!!');
+    } catch (err) {
+      Alert.alert('Something is wrong please try different password or email.');
+    }
+  };
+
+  //main return function
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{alignItems: 'center', backgroundColor: 'skyblue'}}>
@@ -68,7 +90,8 @@ const LoginScreen = ({navigation}) => {
             justifyContent: 'center',
             marginBottom: 20,
             marginTop: 20,
-          }}>
+          }}
+          onPress={()=>userLogin()}>
           <Text style={{margin: 5, fontSize: 16, fontWeight:'bold'}}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Signup")}>

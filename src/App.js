@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, StatusBar} from 'react-native';
 
 import {
@@ -14,6 +14,8 @@ import {
   Provider as PaperProvider,
   Title,
 } from 'react-native-paper';
+
+import auth from '@react-native-firebase/auth';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -29,6 +31,7 @@ import SignupScreen from './screens/SignupScreen';
 import AddItemScreen from './screens/AddItemScreen';
 import ListItemHomeScreen from './screens/ListItemHomeScreen';
 import AccountScreen from './screens/AccountScreen';
+
 
 // used theme from react-native-paper
 const theme = {
@@ -70,35 +73,47 @@ const TabNavigator = () => {
         tabBarIcon: ({color}) => {
           let iconName;
 
-          // if (route.name === 'Home') {
-          //   iconName = 'home';
-          // } else if (route.name === 'Add') {
-          //   iconName = 'plus-circle';
+          if (route.name === 'Home') {
+            iconName = 'home';
+          } else if (route.name === 'Add') {
+            iconName = 'plus-circle';
+           }else if(route.name === "Account")
+           {
+            iconName = 'plus-circle';
+           }
+          // switch (route.name) {
+          //   case 'Home':
+          //     iconName = 'home';
+          //     break;
+          //   case 'Add':
+          //     iconName = 'plus-circle';
+          //     break;
+          //   case 'Account':
+          //     iconName = 'user';
+          //     break;
+          //   default:
+          //     break;
           // }
-          switch (route.name) {
-            case 'Home':
-              iconName = 'home';
-              break;
-            case 'Add':
-              iconName = 'plus-circle';
-              break;
-            case 'Account':
-              iconName = 'user';
-              break;
-            default:
-              break;
-          }
 
           // You can return any component that you like here!
           // customize Icon
-          return <Feather name={iconName} size={30} color={color} />;
+          return (
+            <View style={{borderRadius:100, borderWidth:10, borderColor:'#00C0F0', backgroundColor:'#00C0F0', marginTop:-20}}>
+              <Feather name={iconName} size={30} color={color} />
+            </View>
+          );
         },
         tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
       })}
       tabBarOptions={{
-        activeTintColor: '#588BAE',
+        showLabel: false,
+        activeTintColor: '#005063',
         inactiveTintColor: 'gray',
+        style: {
+          backgroundColor: '#00C0F0',
+
+        },
       }}>
       <Tab.Screen
         name="Home"
@@ -117,13 +132,26 @@ const TabNavigator = () => {
 
 //Combine StackNavigator and TabNavigator - This component used for Navigation
 const Navigation = () => {
-  // const User = 'fgb';
+  const [user, setUser] = useState('');
+
+  //used "useEffect" - take "function" as a argument, second option pass "empty dependency - means empty array"
+    // empty dependency - used beacuse we need used useEffect only one time.
+  useEffect(()=>{
+    auth().onAuthStateChanged((userExits)=>{
+      if(userExits)
+      {
+        setUser(userExits)
+      }else{
+        setUser("");
+      }
+    })
+  },[])
   return (
     <NavigationContainer>
-      <TabNavigator />
+      {/* <TabNavigator /> */}
       {/* <AuthNavigator /> */}
       {/* This is condition used for check user avaialble or not - If user is available then show TabNavigator or If User is not available then show AuthNavigator. */}
-      {/* {User ? <TabNavigator /> : <AuthNavigator />} */}
+      {user ? <TabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

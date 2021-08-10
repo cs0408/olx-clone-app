@@ -88,7 +88,7 @@ const ListItemHomeScreen = () => {
 
   // Main return function
   return (
-    <View>
+    <View style={{flex: 1}}>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={addsItem} //give array or data for flatList
