@@ -21,7 +21,6 @@ const LoginScreen = ({navigation}) => {
         email,
         password,
       );
-      Alert.alert('Login Successfuly!!');
     } catch (err) {
       Alert.alert('Something is wrong please try different password or email.');
     }
