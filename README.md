@@ -32,8 +32,11 @@ A brief intoduction of my application - In this project implement olx like funct
 - Profile Screen for Containing user email and items.
 
 ## ScreenShots video - of APP
+
 - Thsese two videos contans - How to Login and How to post item.
+
 https://user-images.githubusercontent.com/53467139/131995212-31b07746-37ed-4c86-965f-8106446dbdad.mp4
+
 https://user-images.githubusercontent.com/53467139/131995267-eb01c9ec-e47d-4a3b-9437-d9aaeb48d70b.mp4
 
   
